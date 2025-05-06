@@ -1,0 +1,42 @@
+Flask
+
+Light weight Python web framework for building web apps or API
+
+~feature of flask~
+=> micro framework, has a minimal structure
+=> routing create an endpoint(url) `/users/payment/mpesa/aer45-iuty89-optrcv` to map to a python function
+=> HTTP handling - GET, POST, PUT/PATCH, DELETE
+        100
+        200 -=> Success
+            200 GET - data was retrived
+            201 POST -data was created
+            204 DELETE
+
+        300 -=> Redirection
+        400 -=> Error
+            400 - Bad Request
+            {
+                key:value
+            }
+            401 - Unautheticated
+            403 - Forbidden Request
+            404 - Resource not found
+            405 - Method not allowed
+        500 -=> Server Error
+=> Extension
+=> REST API
+
+
+~Flask Server~
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello, rock stars!"
+
+if __name__ == "__main__":
+    app.run()
+
+    
