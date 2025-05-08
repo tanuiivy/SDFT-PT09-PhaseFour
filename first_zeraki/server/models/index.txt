@@ -1,0 +1,1 @@
+We write oop and use an orm to connect to the database

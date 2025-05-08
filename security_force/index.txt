@@ -1,0 +1,49 @@
+FLASK-SQLAlchemy
+
+Define a model and connect to the database
+
+ORM = (Object Relational Mapping)
+=> Maps databases tables to python classes and rows to class instances
+
+Flask Migrate
+
+Uses Alembic to handle database migrations
+
+
+~First Step~
+1. Define a model
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+~Second Step~
+2. Configure flask sqlalchemy and define a model
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+app = Flask(__name__)
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, "app.db")}'
+db = SQLAlchemy(app)
+db.init_app(app)
+migrate = Migrate(app, db)
+
+class Pet(db.Model):
+    __tablename__ = 'pets'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    species = db.Column(db.String)
+
+if __name__ == "__main__":
+    app.run()
+    
